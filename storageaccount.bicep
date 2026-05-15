@@ -1,5 +1,5 @@
 @description('Name of the storage account')
-param storageAccountName string = ''mystorage{uniqueString(resourceGroup().id)}'
+param storageAccountName string = 'mystorage{uniqueString(resourceGroup().id)}'
 
 @description('Location for the storage account')
 param location string = 'eastus'
