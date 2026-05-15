@@ -6,7 +6,7 @@ on:
 jobs:
   delete:
     runs-on: ubuntu-latest
-
+    
     env:
       RESOURCE_GROUP: rg-bicep-demo
       STORAGE_NAME: mystorageiqflewgd322mw 
