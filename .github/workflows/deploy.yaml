@@ -12,7 +12,9 @@ jobs:
     env:
       RESOURCE_GROUP: rg-bicep-demo
       LOCATION: eastus
-      BICEP_FILE: storageaccount.bicep  
+      BICEP_FILE: storageaccount.bicep 
+      VM_BICEP_FILE: bicep/vm.bicep
+      VM_NAME: windowsVM
 
     steps:
     - name: Checkout code
@@ -34,3 +36,14 @@ jobs:
         az deployment group create \
           --resource-group $RESOURCE_GROUP \
           --template-file $BICEP_FILE
+
+    - name: Deploy VM
+      run: |
+        az deployment group create \
+          --resource-group $RESOURCE_GROUP \
+          --template-file $VM_BICEP_FILE \
+          --parameters \
+            vmName=$VM_NAME \
+            adminUsername=azureuser \
+            adminPassword=${{ secrets.VM_PASSWORD }}
+
