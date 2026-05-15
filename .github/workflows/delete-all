@@ -1,0 +1,27 @@
+
+name: Delete All Resources
+
+on:
+  workflow_dispatch:  
+
+jobs:
+  delete:
+    runs-on: ubuntu-latest
+
+    env:
+      RESOURCE_GROUP: rg-bicep-demo
+
+    steps:
+    - name: Login to Azure
+      uses: azure/login@v2
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Delete Resource Group
+      run: |
+        echo "Deleting resource group: $RESOURCE_GROUP"
+
+        az group delete \
+          --name $RESOURCE_GROUP \
+          --yes \
+          --no-wait
