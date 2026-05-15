@@ -1,0 +1,25 @@
+name: Delete Storage Account
+
+on:
+  workflow_dispatch:
+
+jobs:
+  delete:
+    runs-on: ubuntu-latest
+
+    env:
+      RESOURCE_GROUP: rg-bicep-demo
+      STORAGE_NAME: mystorageiqflewgd322mw 
+
+    steps:
+    - name: Login to Azure
+      uses: azure/login@v2
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Delete Storage Account
+      run: |
+        az storage account delete \
+          --name $STORAGE_NAME \
+          --resource-group $RESOURCE_GROUP \
+          --yes
