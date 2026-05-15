@@ -11,7 +11,7 @@ jobs:
 
     env:
       RESOURCE_GROUP: rg-bicep-demo
-      LOCATION: eastus
+      LOCATION: centralindia
       BICEP_FILE: storageaccount.bicep 
       VM_BICEP_FILE: bicep/vm.bicep
       VM_NAME: windowsVM
